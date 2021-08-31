@@ -1,6 +1,6 @@
 ###################################################################################################
 # Contains additional parameters for the recipe to download the Visual Studio Remote debugger for
-# all 16.x versions.
+# all 16.x and 17.x versions.
 # Copyright Richard Dunkley 2019
 ###################################################################################################
 DESCRIPTION = "This does not build this version, it only pulls the binaries from Microsoft"
