@@ -69,9 +69,6 @@ do_install_prepend () {
 	for file in ${S}/shared/Microsoft.NETCore.App/${PV}/*.json; do
 		install -m 0644 "$file" ${D}${datadir}/dotnet/shared/Microsoft.NETCore.App/${PV}/
 	done
-	for file in ${S}/shared/Microsoft.NETCore.App/${PV}/*.a; do
-		install -m 0644 "$file" ${D}${datadir}/dotnet/shared/Microsoft.NETCore.App/${PV}/
-	done
 
 	install -d ${D}/usr/local/share
 
