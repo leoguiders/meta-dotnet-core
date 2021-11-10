@@ -47,6 +47,8 @@ Assuming the meta-dotnet-core layer exists at the top-level of your yocto build 
     /path/to/yocto/meta-poky \
     /path/to/yocto/meta-yocto-bsp \
     /path/to/yocto/meta-dotnet-core \
+    /path/to/yocto/meta-security \
+    /path/to/yocto/meta-openembedded/meta-perl \
     "
 ```
 
