@@ -4,6 +4,6 @@
 # Original version Copyright Richard Dunkley 2020
 # Modified for 6.0.0 by Jan Philipp Giel 2021
 ###################################################################################################
-require recipes-runtime/dotnet-core/dotnet-core_6.0.11.inc
+require recipes-runtime/dotnet-core/dotnet-core_6.0.0.inc
 require recipes-runtime/dotnet-core/dotnet-core_6.x.x.inc
 
