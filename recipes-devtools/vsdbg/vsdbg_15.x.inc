@@ -21,8 +21,8 @@ do_compile[noexec] = "1"
 
 PACKAGES = "${PN}-dbg ${PN}"
 
-FILES_${PN} += "${ROOT_HOME}"
-FILES_${PN} += ""
+FILES:${PN} += "${ROOT_HOME}"
+FILES:${PN} += ""
 
 
 do_install:prepend () {

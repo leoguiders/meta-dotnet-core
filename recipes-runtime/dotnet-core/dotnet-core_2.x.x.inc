@@ -23,10 +23,10 @@ do_compile[noexec] = "1"
 
 #PACKAGES =+ "${PN}-dbg ${PN}-staticdev ${PN}"
 
-#FILES_${PN} += "${datadir}"
-#FILES_${PN} += ""
+#FILES:${PN} += "${datadir}"
+#FILES:${PN} += ""
 
-FILES_${PN} += " \
+FILES:${PN} += " \
 	${datadir}/dotnet/dotnet \
 	${datadir}/dotnet/*.txt \
 	${datadir}/dotnet/host/fxr/${PV}/*.so \
