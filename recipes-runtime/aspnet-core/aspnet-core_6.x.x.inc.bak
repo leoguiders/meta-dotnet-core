@@ -30,7 +30,6 @@ do_compile[noexec] = "1"
 FILES:${PN} += " \
 	${datadir}/dotnet \
 	/usr/local/share/dotnet \
-	/usr/share/dotnet \
 	"
 
 do_install:prepend () {
