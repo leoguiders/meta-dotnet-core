@@ -25,7 +25,7 @@ FILES_${PN} += "${ROOT_HOME}"
 FILES_${PN} += ""
 
 
-do_install_prepend () {
+do_install:prepend () {
 	install -d ${D}${ROOT_HOME}/.vs-debugger/vs2019/
 	install -m 0755 ${S}/vsdbg ${D}${ROOT_HOME}/.vs-debugger/vs2019/
 	install -m 0644 ${S}/license.txt ${D}${ROOT_HOME}/.vs-debugger/vs2019/

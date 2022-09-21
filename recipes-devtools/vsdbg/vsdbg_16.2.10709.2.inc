@@ -16,7 +16,7 @@ DOTNET_RUNTIME_ARCH_x86_64 = "x64"
 # This is here because it doesn't seem like bitbake likes ${PV} used in require statements.
 require recipes-devtools/vsdbg/vsdbg_16.2.10709.2_${DOTNET_RUNTIME_ARCH}.inc
 
-do_install_append () {
+do_install:append () {
 	echo "16.2.10709.2" > ${D}${ROOT_HOME}/.vs-debugger/vs2019/success.txt
 	echo "16.2.10709.2" > ${D}${ROOT_HOME}/.vs-debugger/vs2019/success_version.txt
 	echo "linux-${DOTNET_RUNTIME_ARCH}" > ${D}${ROOT_HOME}/.vs-debugger/vs2019/success_rid.txt
