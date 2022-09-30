@@ -13,7 +13,7 @@ S = "${WORKDIR}/aspnet-${PV}"
 require recipes-runtime/aspnet-core/aspnet-core_mit_6.x.x.inc
 
 DEPENDS = "zlib"
-RDEPENDS:${PN} = "icu lttng-tools lttng-ust zlib libgssglue krb5 libgssapi-krb5"
+RDEPENDS:${PN} = "icu lttng-tools lttng2-ust zlib libgssglue krb5 libgssapi-krb5"
 
 INSANE_SKIP:${PN} += "already-stripped libdir textrel"
 INSANE_SKIP:${PN}-dbg += "libdir"
