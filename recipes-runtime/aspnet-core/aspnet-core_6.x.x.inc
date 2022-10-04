@@ -75,7 +75,7 @@ do_install:prepend () {
 	install -d ${D}/usr/local/share
 
     	# Hack to fix liblttng-ust dependency issues
-	patchelf --remove-needed liblttng-ust.so.0 ${D}${datadir}/dotnet/shared/Microsoft.NETCore.App/${DOTNET_RUNTIME}/libcoreclrtraceptprovider.so
+	patchelf --remove-needed liblttng-ust.so.0 ${D}${datadir}/dotnet/shared/Microsoft.NETCore.App/${PV}/libcoreclrtraceptprovider.so
 }
 
 do_install:append() {
