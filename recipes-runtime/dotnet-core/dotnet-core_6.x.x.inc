@@ -13,11 +13,12 @@ S = "${WORKDIR}/dotnet-${PV}"
 require recipes-runtime/dotnet-core/dotnet-core_mit_6.x.x.inc
 
 DEPENDS = "zlib"
-RDEPENDS_${PN} = "icu lttng-tools lttng-ust zlib libgssglue krb5 libgssapi-krb5"
 
-INSANE_SKIP_${PN} += "already-stripped libdir textrel"
+#FIXME add lttng-ust as soon as dotnet core supports liblttng-ust.so.1
+RDEPENDS_${PN} = "icu zlib libgssglue krb5 libgssapi-krb5"
+
+INSANE_SKIP_${PN} += "already-stripped libdir textrel staticdev"
 INSANE_SKIP_${PN}-dbg += "libdir"
-INSANE_SKIP_${PN} += "staticdev"
 
 do_configure[noexec] = "1"
 do_compile[noexec] = "1"
@@ -31,6 +32,9 @@ FILES:${PN} += " \
 	${datadir}/dotnet \
 	/usr/local/share/dotnet \
 	"
+	
+do_configure[noexec] = "1"
+do_compile[noexec] = "1"
 
 do_install:prepend () {
 	install -d ${D}${bindir}
