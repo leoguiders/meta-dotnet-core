@@ -12,12 +12,13 @@ S = "${WORKDIR}/aspnet-${PV}"
 
 require recipes-runtime/aspnet-core/aspnet-core_mit_6.x.x.inc
 
-DEPENDS = "zlib"
-RDEPENDS:${PN} = "icu lttng-tools lttng2-ust zlib libgssglue krb5 libgssapi-krb5"
+DEPENDS = "zlib patchelf-native"
 
-INSANE_SKIP:${PN} += "already-stripped libdir textrel"
+#FIXME add lttng-ust as soon as dotnet core supports liblttng-ust.so.1
+RDEPENDS:${PN} = "icu zlib libgssglue krb5 libgssapi-krb5"
+
+INSANE_SKIP:${PN} += "already-stripped libdir textrel staticdev"
 INSANE_SKIP:${PN}-dbg += "libdir"
-INSANE_SKIP:${PN} += "staticdev"
 
 do_configure[noexec] = "1"
 do_compile[noexec] = "1"
@@ -73,6 +74,8 @@ do_install:prepend () {
 
 	install -d ${D}/usr/local/share
 
+    	# Hack to fix liblttng-ust dependency issues
+	patchelf --remove-needed liblttng-ust.so.0 ${D}${datadir}/dotnet/shared/Microsoft.NETCore.App/${DOTNET_RUNTIME}/libcoreclrtraceptprovider.so
 }
 
 do_install:append() {
