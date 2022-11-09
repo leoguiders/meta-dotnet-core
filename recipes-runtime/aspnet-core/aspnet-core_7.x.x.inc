@@ -1,8 +1,8 @@
 ###################################################################################################
 # Contains additional parameters for the recipe to download the release binaries from Microsoft
-# pertaining to all 6.x.x versions.
+# pertaining to all 7.x.x versions.
 # Original version Copyright Richard Dunkley 2020
-# Modified for 6.0.0 by Jan Philipp Giel 2021
+# Modified for 7.0.0 by Jan Philipp Giel 2022
 ###################################################################################################
 DESCRIPTION = "This does not build this version, it only pulls the binaries from Microsoft"
 BUGTRACKER = "https://github.com/aspnet/AspNetCore/issues"
@@ -10,14 +10,15 @@ SECTION = "runtime"
 
 S = "${WORKDIR}/aspnet-${PV}"
 
-require recipes-runtime/aspnet-core/aspnet-core_mit_6.x.x.inc
+require recipes-runtime/aspnet-core/aspnet-core_mit_7.x.x.inc
 
-DEPENDS = "zlib"
-RDEPENDS:${PN} = "icu lttng-tools lttng-ust zlib libgssglue krb5 libgssapi-krb5"
+DEPENDS = "zlib patchelf-native"
 
-INSANE_SKIP:${PN} += "already-stripped libdir textrel"
+#FIXME add lttng-ust as soon as dotnet core supports liblttng-ust.so.1
+RDEPENDS:${PN} = "icu zlib libgssglue krb5 libgssapi-krb5"
+
+INSANE_SKIP:${PN} += "already-stripped libdir textrel staticdev"
 INSANE_SKIP:${PN}-dbg += "libdir"
-INSANE_SKIP:${PN} += "staticdev"
 
 do_configure[noexec] = "1"
 do_compile[noexec] = "1"
@@ -30,6 +31,7 @@ do_compile[noexec] = "1"
 FILES:${PN} += " \
 	${datadir}/dotnet \
 	/usr/local/share/dotnet \
+	/usr/share/dotnet \
 	"
 
 do_install:prepend () {
@@ -72,6 +74,8 @@ do_install:prepend () {
 
 	install -d ${D}/usr/local/share
 
+	# Hack to fix liblttng-ust dependency issues
+	patchelf --remove-needed liblttng-ust.so.0 ${D}${datadir}/dotnet/shared/Microsoft.NETCore.App/${PV}/libcoreclrtraceptprovider.so
 }
 
 do_install:append() {
