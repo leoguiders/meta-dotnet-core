@@ -14,8 +14,7 @@ require recipes-runtime/aspnet-core/aspnet-core_mit_7.x.x.inc
 
 DEPENDS = "zlib patchelf-native"
 
-#FIXME add lttng-ust as soon as dotnet core supports liblttng-ust.so.1
-RDEPENDS:${PN} = "icu zlib libgssglue krb5 libgssapi-krb5"
+RDEPENDS:${PN} = "icu zlib libgssglue krb5 libgssapi-krb5 lttng-ust"
 
 INSANE_SKIP:${PN} += "already-stripped libdir textrel staticdev"
 INSANE_SKIP:${PN}-dbg += "libdir"
@@ -75,7 +74,7 @@ do_install:prepend () {
 	install -d ${D}/usr/local/share
 
 	# Hack to fix liblttng-ust dependency issues
-	patchelf --remove-needed liblttng-ust.so.0 ${D}${datadir}/dotnet/shared/Microsoft.NETCore.App/${PV}/libcoreclrtraceptprovider.so
+	# patchelf --remove-needed liblttng-ust.so.0 ${D}${datadir}/dotnet/shared/Microsoft.NETCore.App/${PV}/libcoreclrtraceptprovider.so
 }
 
 do_install:append() {
