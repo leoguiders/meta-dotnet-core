@@ -12,7 +12,9 @@ S = "${WORKDIR}/aspnet-${PV}"
 
 require recipes-runtime/aspnet-core/aspnet-core_mit_7.x.x.inc
 
-DEPENDS = "zlib patchelf-native"
+RPROVIDES:${PN} = "dotnet-core"
+
+DEPENDS = "patchelf-native"
 
 #FIXME add lttng-ust as soon as dotnet core supports liblttng-ust.so.1
 RDEPENDS:${PN} = "icu zlib libgssglue krb5 libgssapi-krb5"
